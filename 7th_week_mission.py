@@ -104,7 +104,7 @@ for i in range(0,1000,2):
 t.mainloop()
 '''
 ## 반복문 mission4-2: turtle을 활용한 미디어아트1
-'''
+
 import turtle as t
 
 t.bgcolor('black')
@@ -116,9 +116,9 @@ for i in range(1000):
     t.fd(i)
     t.left(59)
 t.mainloop()
-'''
-## 반복문 mission5-1: turtle을 활용한 미디어아트2
 
+## 반복문 mission5-1: turtle을 활용한 미디어아트2
+'''
 import turtle as t
 n = 200
 t.bgcolor('black')
@@ -129,7 +129,7 @@ for i in range(n):
     t.left(360/n)
 
 t.mainloop()
-
+'''
 ## 반복문 mission5-2: turtle을 활용한 미디어아트2
 
 
