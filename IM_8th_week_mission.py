@@ -1,4 +1,4 @@
-# Ai반 2기 python 중급반 - 7주차 정규수업(16:30~18:30) mission
+# Ai반 2기 python 중급반 - 8주차 정규수업(16:30~18:30) mission
 '''
 [수업을 시작하기 전에!]
 1. 웨일ON으로 원격 회의실 접속하기
@@ -8,171 +8,131 @@
 5. 수업시간 집중~~~!! 딴 짓! 멈춰~~~~~!
 
 [저번주 복습]
-1. class: 상속
-2. class: super()와 클래스 변수
+1. 예외처리 및 예외 발생시키기 
+2. 파일 입출력: 파일 쓰기
 '''
 
-# [class(3) 이어서...]
-## class Mission: 아이템 구성안과 설계도를 활용하여, class와 객체를 생성해 보자
-## 이때, 부모 클래스: Item // 자식 클래스: WearableItem, UsableItem 이다.
-'''
-## 아이템 클래스
-## 모든 아이템들의 아이템 수를 500개로 제한한다.(클래스 변수)
-
-## 장비 아이템 클래스
-class WearableItem(Item):
-
-# 소모품 아이템 클래스
-
-# 객체 생성(각 객체 생성 및 테스트)
-'''
-
-# [예외처리]
-# : 프로그램 실행 중에 발생하는 예외를 미연에 방지하는 것.
-'''
-## 예외처리가 필요한 이유 예시:  계산기 프로그램
-num1 = int(input("첫 번째 숫자를 입력해 주세요(숫자를 입력해 주세요): "))
-num2 = int(input("두 번째 숫자를 입력해 주세요(숫자를 입력해 주세요): "))
-print(num1+num2)
-'''
-## 예외처리 연습문제: 환율 계산 문제
-'''
-try:
-    won = float(input("원화 입력>>  "))
-    dollar = float(input("달러 입력>>  "))
-    exchange_rage = won / dollar
-except ValueError as e:
-    print("문자열 처리 예외가 발생하였습니다.", e)
-except ZeroDivisionError as e:
-    print("분모에는 0이 들어갈 수 없습니다", e)
-else:
-    print("오류가 발생하지 않았습니다.")
-finally:
-    print("얘는 그냥 실행 돼")
-'''
-
-
-'''
-## 에러 발생시키기 연습문제
-kkaak = input("문자열을 입력해주세요: >>")
-if kkaak == "까마귀 날자":
-    raise Exception("배 떨어진다.")
-'''
-'''
-## 예외처리 Mission: 영어단어 공부하기 문제를 'while문 + 예외 처리'로 풀어보자
-word = ['oh sujin', 'Pneumonoultramicroscopicsilicovolcanoconiosis', 'Supercalifragilisticexpialidocious']
-i=0
-count = 0
-while True:
-    try:
-        print(word[i])
-    except:
-        break
-    temp = input()
-    if temp == word[i]:
-        count += 1
-    i += 1
-print(f"전체 개수: {len(word)}")
-print(f"맞은 개수: {count}")
-print(f"틀린 개수: {i-count}")
-'''
 # [파일 입출력]
 ## 파일 입출력 연습문제1: 파일 쓰기(w: 새로쓰기 혹은 덮어쓰기)
 '''
-f = open(".txt", 'w', encoding= 'utf-8')
-f.write('안녕하세요 :D')
-f.close()
-'''
-
 f = open("test.txt", 'w', encoding='utf-8')
-for i in range(1, 11):
-    f.write(f'{i}번째 줄입니다.\n')
+f.write('안녕하세요 :D')
 f.close()
 
 ## 파일 입출력 연습문제2: 파일 추가하기(a: 추가하기)
-
-
+f = open("test.txt", 'a', encoding='utf-8')
+for i in range(11,21):
+    f.write(f'{i}번쨰 줄입니다.\n')
+f.close()
+'''
 ## 파일 입출력 연습문제3: 파일 읽기(r: 읽기)
+'''
+f = open("test.txt", 'r', encoding='utf-8')
+while True:
+    data = f.readline()
+    print(data, end='')
+    if data == '':
+        break
+print('읽어오기가 끝났습니다.')
+'''
 ## way1) readline 함수 사용(한 줄 씩 읽어오기)
-
-
+'''
+f = open("test.txt", 'r', encoding='utf-8')
+data = f.readlines()
+for line in data:
+    print(line, end='')
+print('문장이 끝났습니다.')
+f.close()
+'''
 ## way2) readlines 함수 사용(모든 줄을 읽어와, 각 줄을 리스트의 요소로 반환)
 
 
 ## way3) read 함수 사용(문서 전체를 하나의 문자열로 가져오기)
-
-
+'''
+f = open("test.txt", 'r', encoding='utf-8')
+data = f.read()
+print(data)
+print(type(data))
+f.close
+'''
 # [이벤트 처리]
 ## turtle 마우스 이벤트 처리 연습문제
-'''
-# <import>
-# turtle & random 
+
+import turtle as t
+import random
 
 # randomColor 함수: 랜덤한 r,g,b 값을 반환하는 함수
 def randomColor():
-    # r: random.random(): 0~1상이의 랜덤한 값 할당
-    # g
-    # b
-    # return
+    r = random.random() # r: random.random(): 0~1사이의 랜덤한 값 할당
+    g = random.random() # g
+    b = random.random() # b
+    return r, g, b           # return
 
 # leftClick 핸들링 함수: 거북이 스탬프 모양을 찍는 함수
 def turtleStamp(x, y):
-    # 거북이 숨기기
-    # (x,y)좌표로 거북이 이동
-    # 랜덤하게 거북이의 머리 방향 지정(0~360도)
-    # 랜덤하게 거북이의 크기 설정(1~10)
-    # 랜덤 r,g,b 값 가져오기(randomColor 함수 사용하기)
-    # 스템프 색상 설정(랜덤 r,g,b 값 넣기)
-    # 스템프 테두리 색성 설정(랜덤 r,g,b 값 넣기)
-    # 스템프 찍기 명령
+    t.hideturtle() # 거북이 숨기기
+    t.setpos(x,y) # (x,y)좌표로 거북이 이동
+    t.setheading(random.randint(1,360)) # 랜덤하게 거북이의 머리 방향 지정(0~360도)
+    t.shapesize(random.randint(1,10)) # 랜덤하게 거북이의 크기 설정(1~10)
+    r, g, b = randomColor() # 랜덤 r,g,b 값 가져오기(randomColor 함수 사용하기)
+    t.fillcolor(r,g,b)# 스템프 색상 설정(랜덤 r,g,b 값 넣기)
+    t.pencolor(r,g,b)# 스템프 테두리 색성 설정(랜덤 r,g,b 값 넣기)
+    t.stamp()# 스템프 찍기 명령
 
-# 프로그램 제목 지정
-# 도장 모양을 turtle으로 설정
-# 속도 설정
-# 펜 들기
+t.title('거북이 도장찍기')# 프로그램 제목 설정
+t.shape('square')# 도장 모양을 turtle으로 설정
+t.speed(0)# 속도 설정
+t.penup()# 펜 들기
 
 # 이벤트 설정: onscreenclick
 
 
-'''
 
-## turtle 마우스 이벤트 처리 Mission
+
+t.onscreenclick(turtleStamp, 1)
+
+t.mainloop()
 '''
-# <import>
-# turtle & random 
+## turtle 마우스 이벤트 처리 Mission
+
+import turtle as t
+import random
 
 # randomColor 함수: 랜덤한 r,g,b 값을 반환하는 함수
 def randomColor():
-    # r: random.random(): 0~1상이의 랜덤한 값 할당
-    # g
-    # b
-    # return
+    r = random.random() # r: random.random(): 0~1사이의 랜덤한 값 할당
+    g = random.random() # g
+    b = random.random() # b
+    return r, g, b           # return
 
 # leftClick 이벤트 핸들링 함수: 거북이 스탬프 모양을 찍는 함수
 def leftClick(x, y):
-    # 거북이 숨기기
-    # (x,y)좌표로 거북이 이동
-    # 랜덤하게 거북이의 머리 방향 지정(0~360도)
-    # 랜덤하게 거북이의 크기 설정(1~10)
-    # 랜덤 r,g,b 값 가져오기(randomColor 함수 사용하기)
-    # 스템프 색상 설정(랜덤 r,g,b 값 넣기)
-    # 스템프 테두리 색성 설정(랜덤 r,g,b 값 넣기)
-    # 스템프 찍기 명령
+    t.hideturtle() # 거북이 숨기기
+    t.setpos(x,y) # (x,y)좌표로 거북이 이동
+    t.setheading(random.randint()) # 랜덤하게 거북이의 머리 방향 지정(0~360도)
+    t.shapesize(random.randint(1,10)) # 랜덤하게 거북이의 크기 설정(1~10)
+    r, g, b = randomColor() # 랜덤 r,g,b 값 가져오기(randomColor 함수 사용하기)
+    t.fillcolor(r,g,b)# 스템프 색상 설정(랜덤 r,g,b 값 넣기)
+    t.pencolor(r,g,b)# 스템프 테두리 색성 설정(랜덤 r,g,b 값 넣기)
+    t.stamp()# 스템프 찍기 명령
 
 # rightClick 이벤트 핸들링 함수: 화면을 초기화하는 함수
 def rightClick(x, y):
     # 화면 초기화
 
-# 프로그램 제목 설정 
-# 도장 모양을 turtle으로 설정
-# 속도 설정
-# 펜 들기
+t.title('거북이 도장찍기')# 프로그램 제목 설정 
+t.shape('turtle')# 도장 모양을 turtle으로 설정
+t.speed(0)# 속도 설정
+t.penup()# 펜 들기
 
+t.onscreenclick(turtleStamp, 1)
+
+t.mainloop()
 # 왼쪽 클릭 이벤트 설정 
 # 오른쪽 클릭 이벤트 설정
-
-
 '''
+
+
 
 ## turtle 키보드 마우스 처리 연습문제
 '''
@@ -241,7 +201,7 @@ def down():
     # 펜 색상 설정
     # 거북이의 색상도 같이 설정
     # 10만 큼 이동
-    
+
 # right 이벤트 핸들링 함수: 오른쪽으로 10만큼 이동 및 색상 변화
 def right():
     # 가려는 방향에 맞게 방향설정
@@ -249,7 +209,7 @@ def right():
     # 펜 색상 설정
     # 거북이의 색상도 같이 설정
     # 10만 큼 이동
-    
+
 # left 이벤트 핸들링 함수: 왼쪽으로 10만큼 이동 및 색상 변화
 def left():
     # 가려는 방향에 맞게 방향설정
@@ -260,7 +220,7 @@ def left():
 
 # clear_bg: 배경 초기화
 def clear_bg():
-    
+
 # close_window: 프로그램을 종료하는 함수
 def close_window():
     t.bye()
@@ -280,4 +240,3 @@ def close_window():
 
 
 '''
-
